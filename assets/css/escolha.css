@@ -15,7 +15,7 @@ body.escolha {
   padding: clamp(20px, 3.2vw, 36px) clamp(24px, 4.4vw, 64px) clamp(14px, 2vw, 24px);
   text-align: center;
 }
-.top-logo { width: clamp(170px, 17vw, 230px); height: auto; margin: 0 auto 14px; border-radius: 4px; }
+.top-logo { width: clamp(190px, 18vw, 250px); height: auto; margin: 0 auto 16px; }
 .top-q { font-size: clamp(1.45rem, 2.4vw, 2.05rem); font-weight: 600; color: var(--primary-ink); }
 
 /* Grade 50/50 */
@@ -61,7 +61,7 @@ body.escolha {
   transition: box-shadow .26s var(--ease), border-color .26s var(--ease);
   text-align: center;
 }
-.choice-link:hover, .choice-link:focus-visible { border-color: #B8D3EA; box-shadow: var(--shadow-md); }
+.choice-link:hover, .choice-link:focus-visible { border-color: #B7CCF5; box-shadow: var(--shadow-md); }
 .choice-link:focus-visible { outline-offset: 4px; }
 
 .choice-head { grid-row: 1; }
@@ -120,7 +120,7 @@ body.escolha {
 .choice-link:hover .main-in, .choice-link:focus-visible .main-in { transform: translateZ(4px) scale(1.025); }
 
 .bg-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-.art { position: absolute; height: auto; filter: drop-shadow(0 10px 14px rgba(11, 42, 69, .12)); }
+.art { position: absolute; height: auto; filter: drop-shadow(0 10px 14px rgba(0, 15, 107, .12)); }
 
 /* composição — câmara fria */
 .choice--camara .art-camara { width: 74%; left: 6%; top: 8%; }
@@ -136,10 +136,10 @@ body.escolha {
   position: absolute;
   display: grid; place-items: center;
   background: #FFFFFF;
-  border: 1px solid #CFE0EF;
+  border: 1px solid #D2DDF3;
   border-radius: 10px;
   padding: 7px 10px;
-  box-shadow: 0 3px 0 #C3D7EA, 0 10px 18px rgba(11, 42, 69, .14);
+  box-shadow: 0 3px 0 #C5D3EE, 0 10px 18px rgba(0, 15, 107, .14);
   transform: translateZ(22px) rotateY(-6deg);
 }
 .plate img { height: clamp(18px, 2.2vw, 30px); width: auto; }
@@ -178,7 +178,7 @@ body.escolha {
 .js .reveal.is-in { opacity: 1; transform: none; }
 
 /* Identificação + CTA */
-.choice-id { font-size: clamp(1rem, 1.3vw, 1.14rem); color: var(--t2); margin: 14px auto 16px; max-width: 30ch; }
+.choice-id { font-size: clamp(1rem, 1.3vw, 1.14rem); color: var(--t2); margin: 14px auto 16px; max-width: 40ch; }
 .choice-cta {
   justify-self: center;
   display: inline-flex; align-items: center; gap: 10px;
@@ -192,7 +192,7 @@ body.escolha {
   transition: background-color .24s var(--ease), box-shadow .24s var(--ease);
 }
 .choice-cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .24s var(--ease); }
-.choice-link:hover .choice-cta, .choice-link:focus-visible .choice-cta { background: var(--primary-deep); box-shadow: 0 8px 20px rgba(0, 74, 128, .28); }
+.choice-link:hover .choice-cta, .choice-link:focus-visible .choice-cta { background: var(--primary-deep); box-shadow: 0 8px 20px rgba(0, 80, 214, .28); }
 .choice-link:hover .choice-cta svg, .choice-link:focus-visible .choice-cta svg { transform: translate(3px, -3px); }
 
 /* Cursor personalizado: só mouse, só nas áreas de escolha */
@@ -234,7 +234,7 @@ body.escolha {
   color: var(--t2);
   cursor: pointer;
 }
-.brands-toggle:hover { color: var(--primary); border-color: #B8D3EA; }
+.brands-toggle:hover { color: var(--primary); border-color: #B7CCF5; }
 .brands-toggle svg { width: 14px; height: 14px; fill: currentColor; }
 .brands-toggle .i-play { display: none; }
 .brands.is-paused .i-play { display: block; }
@@ -272,3 +272,18 @@ body.escolha {
   .tilt, .px { transform: none !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* Grafismo da marca: linhas onduladas do banner/logo */
+body.escolha { position: relative; }
+body.escolha::before {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 6px; height: 110px;
+  background: var(--primary);
+  -webkit-mask: url("../img/ondas.svg") center / 100% 100% no-repeat;
+          mask: url("../img/ondas.svg") center / 100% 100% no-repeat;
+  opacity: .14;
+  pointer-events: none;
+  z-index: 0;
+}
+.top, .choices, .foot { position: relative; z-index: 1; }
+.top-logo { border-radius: 0; }
