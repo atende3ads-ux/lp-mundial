@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/base.css?v=202609250701">
-  <link rel="stylesheet" href="../assets/css/lp.css?v=202609250701">
+  <link rel="stylesheet" href="../assets/css/base.css?v=202609250728">
+  <link rel="stylesheet" href="../assets/css/lp.css?v=202609250728">
   <style>
     /* Exemplo ilustrativo de etiqueta */
     .label-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: var(--shadow-md); max-width: 460px; margin: 0 auto; }
@@ -65,28 +65,27 @@
 <main>
 
   <!-- 1. PRIMEIRA DOBRA -->
-  <section class="hero">
+  <section class="hero hero--full hero--lb">
+    <picture class="hero-bg" aria-hidden="true">
+      <source media="(max-width: 767.98px)" srcset="../assets/img/hero/linha-branca-mobile.webp" width="694" height="1378">
+      <source srcset="../assets/img/hero/linha-branca-desktop-1280.webp 1280w, ../assets/img/hero/linha-branca-desktop.webp 1920w" sizes="100vw" width="1920" height="1000">
+      <img src="../assets/img/hero/linha-branca-desktop.webp" width="1920" height="1000" alt="" fetchpriority="high">
+    </picture>
     <div class="wrap">
-      <div class="fx">
+      <div class="hero-copy fx">
         <!-- COPY -->
         <span class="kicker">Peças de linha branca em Goiânia</span>
         <h1>Peças de linha branca para quem precisa <em>resolver o reparo.</em></h1>
-        <p class="lead">Envie a foto da peça, a etiqueta ou o modelo do equipamento. Nossa equipe ajuda a identificar a referência e consulta disponibilidade, preço e condições para você.</p>
+        <ul class="hero-points">
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><use href="#i-check"/></svg>Envie a foto da peça, a etiqueta ou o modelo do equipamento.</li>
+          <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><use href="#i-check"/></svg>Nossa equipe ajuda a identificar a referência e consulta disponibilidade, preço e condições para você.</li>
+        </ul>
         <div class="cta-row">
           <a class="btn btn-wa" data-wa="linha" data-intent="geral" data-pos="hero"
              data-wa-msg="Olá! Vim pela página de linha branca da Mundial e quero consultar uma peça. Vou enviar a foto, o modelo ou o código para verificar a referência e a disponibilidade."
              href="https://wa.me/5562900000001"><svg><use href="#i-wa"/></svg>Consultar minha peça no WhatsApp</a>
         </div>
         <p class="micro">Já tem o código? Envie também. Ele ajuda na identificação.</p>
-      </div>
-
-      <div class="hero-art fx" aria-hidden="true">
-        <div class="panel"></div>
-        <!-- PROTÓTIPO: substituir por fotos reais das peças prioritárias -->
-        <img src="../assets/img/placa.svg" width="190" height="130" alt="" style="width:44%;right:2%;top:10%">
-        <img src="../assets/img/mecanismo.svg" width="170" height="190" alt="" style="width:40%;left:10%;top:18%">
-        <img src="../assets/img/capacitor.svg" width="110" height="170" alt="" style="width:23%;left:52%;top:40%">
-        <span class="art-note">Imagem ilustrativa</span>
       </div>
     </div>
   </section>
@@ -313,7 +312,7 @@
      href="https://wa.me/5562900000001"><svg><use href="#i-wa"/></svg>Consultar minha peça no WhatsApp</a>
 </nav>
 
-<script src="../assets/js/mundial.js?v=202609250701" defer></script>
-<script src="../assets/js/lp.js?v=202609250701" defer></script>
+<script src="../assets/js/mundial.js?v=202609250728" defer></script>
+<script src="../assets/js/lp.js?v=202609250728" defer></script>
 </body>
 </html>
