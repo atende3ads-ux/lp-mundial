@@ -120,10 +120,6 @@ section:first-of-type { border-top: 0; }
 .hero--full .scope { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .16); border-left-color: #4D94FF; color: #D3DDF5; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .hero--full .scope svg { stroke: #9EC2FF; }
 .hero--full .micro { color: #AFC0E6; }
-.hero-brands { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-brands li { height: 48px; min-width: 104px; padding: 8px 14px; display: grid; place-items: center; background: #FFFFFF; border-radius: 10px; box-shadow: 0 6px 18px rgba(1, 8, 36, .35); }
-.hero-brands img { max-height: 28px; width: auto; }
-.hero-brands img.tall { max-height: 40px; }
 
 @media (max-width: 1100px) {
   .hero--full .hero-copy { max-width: 560px; }
@@ -138,10 +134,6 @@ section:first-of-type { border-top: 0; }
   .hero--full .hero-bg img { position: absolute; top: 0; left: 0; width: 100%; height: auto; object-fit: initial; }
   .hero--full .hero-copy { padding-top: 102vw; }
   .hero--lb .hero-copy { padding-top: 90vw; }
-  .hero-brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .hero-brands li { min-width: 0; height: 44px; padding: 6px 8px; }
-  .hero-brands img { max-height: 24px; max-width: 100%; }
-  .hero-brands img.tall { max-height: 34px; }
   .hero--full .hero-copy::before { inset: 96vw -20px -20px -20px; }
   .hero--lb .hero-copy::before { inset: 84vw -20px -20px -20px; }
 }
@@ -159,6 +151,25 @@ section:first-of-type { border-top: 0; }
 .prods { list-style: none; margin: 44px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; position: relative; z-index: 1; }
 .prods li { background: #FFFFFF; border-radius: 14px; padding: 14px 12px 14px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; color: var(--primary-ink); font-size: .86rem; font-weight: 500; line-height: 1.3; }
 .prods img { height: 84px; width: 100%; object-fit: contain; }
+
+/* ---------- Faixa de marcas (abaixo do hero) ---------- */
+.brandbar { background: var(--surface); padding: clamp(36px, 4.5vw, 56px) 0; border-top: 0; }
+.brandbar .wrap { display: grid; grid-template-columns: minmax(200px, 1fr) 3fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.brandbar-title { font-size: clamp(1.02rem, 1.3vw, 1.2rem); font-weight: 600; line-height: 1.3; color: var(--primary-ink); letter-spacing: -.005em; }
+.brandbar-logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.brandbar-logos li { height: 92px; display: grid; place-items: center; padding: 14px; background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; }
+.brandbar-logos img { max-height: 34px; max-width: 100%; width: auto; }
+.brandbar-logos img.tall { max-height: 48px; }
+@media (max-width: 900px) {
+  .brandbar .wrap { grid-template-columns: 1fr; gap: 20px; }
+  .brandbar-title { text-align: center; max-width: 34ch; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  .brandbar-logos { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .brandbar-logos li { height: 76px; }
+  .brandbar-logos img { max-height: 28px; }
+  .brandbar-logos img.tall { max-height: 42px; }
+}
 
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: 18px; margin-top: 40px; }
