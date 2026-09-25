@@ -83,6 +83,48 @@ section:first-of-type { border-top: 0; }
   padding: 2px 8px; border-radius: 6px;
 }
 
+/* ---------- Hero de imagem cheia (câmara fria) ---------- */
+.hero--full {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #01081F;
+  color: #FFFFFF;
+  min-height: clamp(580px, calc(100svh - 68px), 900px);
+  display: flex; align-items: center;
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+.hero--full .hero-bg, .hero--full .hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.hero--full .hero-bg img { object-fit: cover; object-position: left center; }
+.hero--full::before { /* reforço de leitura à esquerda */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(1, 8, 36, .7) 0%, rgba(1, 8, 36, .45) 38%, rgba(1, 8, 36, 0) 55%);
+}
+.hero--full .wrap { display: block; width: min(1200px, 100%); }
+.hero--full .hero-copy { max-width: min(560px, 44vw); }
+.hero--full .kicker { color: #9EC2FF; }
+.hero--full .kicker::before { background: #4D94FF; }
+.hero--full h1 { color: #FFFFFF; }
+.hero--full h1 em { color: #6FA8FF; }
+.hero--full .lead { color: #D3DDF5; }
+.hero--full .link-arrow { color: #B9D2FF; }
+.hero--full .scope { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .16); border-left-color: #4D94FF; color: #D3DDF5; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero--full .scope svg { stroke: #9EC2FF; }
+
+@media (max-width: 1100px) {
+  .hero--full .hero-copy { max-width: 560px; }
+  .hero--full .hero-bg img { object-position: 38% center; }
+  .hero--full::before { background: linear-gradient(90deg, rgba(1, 8, 36, .9) 0%, rgba(1, 8, 36, .7) 50%, rgba(1, 8, 36, .25) 100%); }
+}
+/* Celular: imagem vertical no topo, texto na área escura inferior */
+@media (max-width: 767.98px) {
+  .hero--full { display: block; min-height: 0; padding: 0 0 48px; }
+  .hero--full::before { display: none; }
+  .hero--full .hero-bg, .hero--full .hero-bg img { bottom: auto; height: auto; }
+  .hero--full .hero-bg img { position: absolute; top: 0; left: 0; width: 100%; height: auto; object-fit: initial; }
+  .hero--full .hero-copy { padding-top: 102vw; }
+}
+
 /* Foto de ambiente no hero (câmara fria) */
 .hero-art--photo .panel { inset: 0 0 8% 8%; background: var(--primary-ink); border: 0; box-shadow: 0 24px 48px rgba(0, 15, 107, .22); }
 .hero-art--photo .panel::before { display: none; }

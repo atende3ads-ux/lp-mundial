@@ -43,9 +43,14 @@
 <main>
 
   <!-- 1. PRIMEIRA DOBRA -->
-  <section class="hero">
+  <section class="hero hero--full">
+    <picture class="hero-bg" aria-hidden="true">
+      <source media="(max-width: 767.98px)" srcset="../assets/img/hero/camara-fria-mobile.webp" width="694" height="1378">
+      <source srcset="../assets/img/hero/camara-fria-desktop-1280.webp 1280w, ../assets/img/hero/camara-fria-desktop.webp 1920w" sizes="100vw" width="1920" height="1000">
+      <img src="../assets/img/hero/camara-fria-desktop.webp" width="1920" height="1000" alt="" fetchpriority="high">
+    </picture>
     <div class="wrap">
-      <div class="fx">
+      <div class="hero-copy fx">
         <!-- COPY -->
         <span class="kicker">Câmaras frias e refrigeração comercial em Goiânia</span>
         <h1>Câmara fria dimensionada para o que seu negócio precisa <em>conservar.</em></h1>
@@ -57,14 +62,6 @@
           <a class="link-arrow" href="#pecas-de-apoio" data-track="atalho_pecas_apoio">Já tenho uma operação e preciso de peças <svg><use href="#i-down"/></svg></a>
         </div>
         <p class="scope"><svg><use href="#i-info"/></svg><span>A Mundial fornece produtos e orientação de projeto. A instalação não é executada diretamente pela empresa.</span></p>
-      </div>
-
-      <div class="hero-art hero-art--photo fx" aria-hidden="true">
-        <!-- Foto do site produtos.mundialrefrigeracaogo.com.br. Substituir por projeto real autorizado, se houver -->
-        <div class="panel"><img src="../assets/img/camara-fria-ambiente.webp" width="1000" height="876" alt=""></div>
-        <img class="prod" src="../assets/img/produtos/unidade-condensadora.webp" width="530" height="379" alt="" style="width:46%;left:0;bottom:0">
-        <img class="prod" src="../assets/img/produtos/compressor.webp" width="306" height="408" alt="" style="width:21%;right:4%;bottom:2%">
-        <span class="art-note">Imagem ilustrativa</span>
       </div>
     </div>
   </section>
