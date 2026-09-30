@@ -3,7 +3,8 @@
 # Ao incluir GTM, GA4, Google Ads, pixel ou qualquer recurso externo, adicione as origens
 # exatas nas diretivas correspondentes da Content-Security-Policy antes de publicar.
 
-Options -Indexes
+# SymLinksIfOwnerMatch é exigido pelo mod_rewrite em .htaccess; sem ele o Apache responde 403 em tudo (AH00670)
+Options -Indexes +SymLinksIfOwnerMatch
 DirectoryIndex index.html
 AddDefaultCharset UTF-8
 
