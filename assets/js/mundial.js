@@ -1,13 +1,5 @@
 /* Mundial Refrigeração — configuração e utilitários compartilhados */
 (function () {
-  // PROTÓTIPO: números fictícios. Trocar pelos WhatsApps confirmados pela Mundial.
-  var CONFIG = {
-    whatsapp: {
-      camara: "5562900000000", // câmara fria + linha comercial
-      linha: "5562900000001"   // peças / linha branca
-    }
-  };
-
   // Parâmetros de aquisição preservados entre a página de escolha e as LPs
   var KEEP = /^(utm_|gclid$|gbraid$|wbraid$|fbclid$|msclkid$|ttclid$)/;
 
@@ -36,14 +28,13 @@
     window.dataLayer.push(payload);
   }
 
-  // Links de WhatsApp: data-wa="camara|linha", data-wa-msg="texto", data-intent="projeto|pecas|..."
+  // Links de WhatsApp no formato do Spar: data-spar-whatsapp data-phone="55DDDNUMERO" data-text="mensagem".
+  // O número fica só no HTML de cada botão; data-wa="camara|linha" e data-intent/data-pos alimentam o dataLayer.
   function wireWhatsApp(root) {
     (root || document).querySelectorAll("a[data-wa]").forEach(function (a) {
-      var number = CONFIG.whatsapp[a.dataset.wa];
-      var msg = a.dataset.waMsg || "";
+      var number = a.dataset.phone;
+      var msg = a.dataset.text || "";
       a.href = "https://wa.me/" + number + (msg ? "?text=" + encodeURIComponent(msg) : "");
-      a.dataset.phone = number; // Spar (spar-track.js) lê data-phone e data-text no clique
-      if (msg) a.dataset.text = msg;
       a.target = "_blank";
       a.rel = "noopener";
       a.addEventListener("click", function () {
@@ -82,5 +73,5 @@
     });
   }
 
-  window.Mundial = { CONFIG: CONFIG, keepParams: keepParams, track: track, wireWhatsApp: wireWhatsApp, reveal: reveal };
+  window.Mundial = { keepParams: keepParams, track: track, wireWhatsApp: wireWhatsApp, reveal: reveal };
 })();
