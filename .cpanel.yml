@@ -4,3 +4,5 @@ deployment:
     - export DEPLOYPATH=/home2/hg3ads37/produto.mundialrefrigeracaogo.com.br
     - /bin/mkdir -p "$DEPLOYPATH"
     - /usr/bin/rsync -a --delete --exclude='.git' --exclude='.gitignore' --exclude='.cpanel.yml' --exclude='.nojekyll' --exclude='.DS_Store' --exclude='README.md' --exclude='scripts/' --exclude='.well-known' --exclude='cgi-bin' --exclude='error_log' ./ "$DEPLOYPATH/"
+    - /usr/bin/find "$DEPLOYPATH" -path "$DEPLOYPATH/cgi-bin" -prune -o -type d -exec /bin/chmod 755 {} +
+    - /usr/bin/find "$DEPLOYPATH" -path "$DEPLOYPATH/cgi-bin" -prune -o -type f -exec /bin/chmod 644 {} +

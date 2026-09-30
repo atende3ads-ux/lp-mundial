@@ -9,6 +9,7 @@ Domínio: `https://produto.mundialrefrigeracaogo.com.br/` (canonical, `og:url` e
 ## Tracking
 
 - **GTM** `GTM-T6JJ5MPM` e **GA4** `G-YPNLP0WT4K` (gtag.js direto) no topo do `<head>` das três páginas; `noscript` do GTM logo após `<body>`.
+- **Microsoft Clarity** `yqihasm6oq` no `<head>` das três páginas (origens `*.clarity.ms` e `c.bing.com` liberadas na CSP).
 - Os scripts inline do GTM e do gtag são autorizados na CSP **por hash**. Se alterar qualquer caractere deles, rode `python3 scripts/csp.py` (confira com `--check`).
 - A CSP libera GTM, modo Preview do GTM e GA4 com recursos de publicidade ([guia oficial](https://developers.google.com/tag-platform/security/guides/csp)). Qualquer outra origem é bloqueada: tags de **HTML personalizado** e **variáveis JavaScript personalizadas** do GTM não funcionam; prefira Modelos da galeria e libere no `.htaccess` apenas origens confirmadas do cliente.
 - ⚠️ A versão 4 do container `GTM-T6JJ5MPM` contém tags de outro cliente (GA4 `G-ZC0L9ZZM0F` via `stape.marmorariastudio.com.br`), além de Google Ads `AW-18474397484`, Meta Pixel `3507445589526089`, Clarity `yq1li5jqbf` e `spar-hazel.vercel.app/spar-track.js`. Todas estão bloqueadas pela CSP até que a propriedade de cada uma seja confirmada.
@@ -33,6 +34,7 @@ Fotos de produtos (`assets/img/produtos/`) e ambiente de câmara fria vêm do me
 
 - Clone URL: `https://github.com/atende3ads-ux/lp-mundial.git`
 - `.cpanel.yml` copia o repositório para `/home2/hg3ads37/produto.mundialrefrigeracaogo.com.br` com `rsync --delete`, excluindo `.git`, `README.md`, `scripts/`, `.nojekyll` e preservando `.well-known`, `cgi-bin` e `error_log` do servidor.
+- Depois da cópia, o deploy aplica **755 nas pastas e 644 nos arquivos** (fora `cgi-bin`). Sem isso, o `rsync -a` herdava a permissão 700 da pasta do repositório criada pelo cPanel e o site respondia 403.
 - No cPanel: **Update from Remote** → **Deploy HEAD Commit**.
 
 ### `.htaccess` (fonte única de cabeçalhos)
