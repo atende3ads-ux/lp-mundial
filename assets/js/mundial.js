@@ -42,6 +42,8 @@
       var number = CONFIG.whatsapp[a.dataset.wa];
       var msg = a.dataset.waMsg || "";
       a.href = "https://wa.me/" + number + (msg ? "?text=" + encodeURIComponent(msg) : "");
+      a.dataset.phone = number; // Spar (spar-track.js) lê data-phone e data-text no clique
+      if (msg) a.dataset.text = msg;
       a.target = "_blank";
       a.rel = "noopener";
       a.addEventListener("click", function () {
