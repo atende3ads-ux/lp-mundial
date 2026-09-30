@@ -38,7 +38,7 @@ Fotos de produtos (`assets/img/produtos/`) e ambiente de câmara fria vêm do me
 ### `.htaccess` (fonte única de cabeçalhos)
 
 - HTTPS forçado apenas no domínio de produção.
-- CSP estrita: somente arquivos do próprio domínio, sem scripts/estilos inline. **Ao instalar GTM, GA4, Google Ads, pixel ou outro recurso externo, inclua as origens exatas na CSP antes de publicar** — senão o navegador bloqueia.
+- CSP estrita: próprio domínio + origens do GTM/GA4 (ver Tracking), sem `unsafe-inline`; scripts inline só por hash. **Ao adicionar Google Ads, pixel ou outro recurso externo, inclua as origens exatas na CSP antes de publicar** — senão o navegador bloqueia.
 - Cache: HTML revalidado sempre; CSS/JS por 1 ano (versionados por `?v=`); imagens 30 dias; fontes 1 ano. Compressão gzip.
 - Arquivos internos (`.git`, `.cpanel.yml`, `README.md`, `scripts/`) respondem 404 mesmo que o clone fique na raiz do site.
 
