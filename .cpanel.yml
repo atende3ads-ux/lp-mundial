@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/hg3ads37/produto.mundialrefrigeracaogo.com.br
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /usr/bin/rsync -a --delete --exclude='.git' --exclude='.gitignore' --exclude='.cpanel.yml' --exclude='README.md' ./ "$DEPLOYPATH/"
