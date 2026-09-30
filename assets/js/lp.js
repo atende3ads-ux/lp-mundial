@@ -1,4 +1,4 @@
-/* Landing pages: WhatsApp, parâmetros de origem e animação de entrada */
+/* Landing pages: WhatsApp, parâmetros de origem, FAQ e animação de entrada */
 (function () {
   Mundial.keepParams();
   Mundial.wireWhatsApp();
@@ -7,15 +7,17 @@
     a.addEventListener("click", function () { Mundial.track(a.dataset.track, { destino: a.getAttribute("href") }); });
   });
 
-  var fx = document.querySelectorAll(".fx");
-  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    fx.forEach(function (el) { el.classList.add("is-in"); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  // FAQ exclusivo: <details name="..."> já fecha a resposta anterior nos navegadores atuais; aqui fica o fallback.
+  if (!("name" in HTMLDetailsElement.prototype)) {
+    document.querySelectorAll("details[name]").forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        if (!d.open) return;
+        document.querySelectorAll("details[name]").forEach(function (o) {
+          if (o !== d && o.getAttribute("name") === d.getAttribute("name")) o.open = false;
+        });
+      });
     });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  fx.forEach(function (el) { io.observe(el); });
+  }
+
+  Mundial.reveal(".fx", { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 })();

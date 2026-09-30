@@ -54,17 +54,7 @@
   });
 
   // ---------- Revelação única de elementos secundários ----------
-  var reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && !reduce.matches) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.4 });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
-  }
+  Mundial.reveal(".reveal", { threshold: 0.4 });
 
   if (reduce.matches) return;
 

@@ -54,5 +54,31 @@
     });
   }
 
-  window.Mundial = { CONFIG: CONFIG, keepParams: keepParams, track: track, wireWhatsApp: wireWhatsApp };
+  // Revelação única ao rolar. Só esconde (.fx-wait) o que está abaixo da dobra no carregamento:
+  // hero e conteúdo já visível nunca somem; sem JS, sem IntersectionObserver ou com redução de movimento, nada é escondido.
+  function reveal(selector, options) {
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var vh = window.innerHeight;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        io.unobserve(el);
+        el.classList.add("fx-in");
+        el.classList.remove("fx-wait");
+        el.addEventListener("transitionend", function done(ev) {
+          if (ev.target !== el) return;
+          el.classList.remove("fx-in"); // devolve ao elemento as próprias transições (ex.: hover dos cards)
+          el.removeEventListener("transitionend", done);
+        });
+      });
+    }, options);
+    document.querySelectorAll(selector).forEach(function (el) {
+      if (el.getBoundingClientRect().top <= vh) return;
+      el.classList.add("fx-wait");
+      io.observe(el);
+    });
+  }
+
+  window.Mundial = { CONFIG: CONFIG, keepParams: keepParams, track: track, wireWhatsApp: wireWhatsApp, reveal: reveal };
 })();
