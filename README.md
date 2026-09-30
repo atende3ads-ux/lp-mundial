@@ -6,6 +6,14 @@
 
 Domínio: `https://produto.mundialrefrigeracaogo.com.br/` (canonical, `og:url` e dados estruturados usam este endereço).
 
+## Tracking
+
+- **GTM** `GTM-T6JJ5MPM` e **GA4** `G-YPNLP0WT4K` (gtag.js direto) no topo do `<head>` das três páginas; `noscript` do GTM logo após `<body>`.
+- Os scripts inline do GTM e do gtag são autorizados na CSP **por hash**. Se alterar qualquer caractere deles, rode `python3 scripts/csp.py` (confira com `--check`).
+- A CSP libera GTM, modo Preview do GTM e GA4 com recursos de publicidade ([guia oficial](https://developers.google.com/tag-platform/security/guides/csp)). Qualquer outra origem é bloqueada: tags de **HTML personalizado** e **variáveis JavaScript personalizadas** do GTM não funcionam; prefira Modelos da galeria e libere no `.htaccess` apenas origens confirmadas do cliente.
+- ⚠️ A versão 4 do container `GTM-T6JJ5MPM` contém tags de outro cliente (GA4 `G-ZC0L9ZZM0F` via `stape.marmorariastudio.com.br`), além de Google Ads `AW-18474397484`, Meta Pixel `3507445589526089`, Clarity `yq1li5jqbf` e `spar-hazel.vercel.app/spar-track.js`. Todas estão bloqueadas pela CSP até que a propriedade de cada uma seja confirmada.
+- Se o GA4 `G-YPNLP0WT4K` também for configurado dentro do GTM, remova o gtag direto para não contar visitas em dobro.
+
 WhatsApps são **placeholders**: altere em `assets/js/mundial.js` (`CONFIG.whatsapp`).
 Eventos enviados ao `dataLayer`: `selecao_categoria`, `clique_whatsapp` (frente, intenção, posição), `atalho_pecas_apoio`.
 Parâmetros de aquisição (utm_*, gclid, fbclid…) são preservados entre a página de escolha e as LPs.
@@ -36,7 +44,7 @@ Fotos de produtos (`assets/img/produtos/`) e ambiente de câmara fria vêm do me
 
 ### Ao alterar CSS ou JS
 
-Rode `sh scripts/versionar.sh` antes do commit para renovar o `?v=` em todas as páginas.
+Rode `sh scripts/versionar.sh` antes do commit para renovar o `?v=` em todas as páginas. Ao mexer em scripts inline, rode também `python3 scripts/csp.py`.
 
 ## Pendências antes de indexar e divulgar
 
@@ -44,4 +52,4 @@ Rode `sh scripts/versionar.sh` antes do commit para renovar o `?v=` em todas as 
 - [ ] CNPJ no rodapé e URL da política de privacidade (link hoje desativado).
 - [ ] Confirmar mix de marcas e produtos exibidos (ver comentários no HTML).
 - [ ] Trocar `noindex, nofollow` por `index, follow` nas três páginas e criar `sitemap.xml` + `robots.txt` apontando para ele.
-- [ ] Se houver GTM/GA4/Ads: instalar e liberar as origens na CSP do `.htaccess`.
+- [ ] Limpar o container `GTM-T6JJ5MPM` (remover tags da Marmoraria Studio) e confirmar Ads, Meta, Clarity e spar-track antes de liberá-los na CSP.

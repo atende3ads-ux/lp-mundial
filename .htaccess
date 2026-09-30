@@ -30,7 +30,11 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+  # GTM-T6JJ5MPM + GA4 G-YPNLP0WT4K (com recursos de publicidade) + modo Preview do GTM, conforme
+  # https://developers.google.com/tag-platform/security/guides/csp — scripts inline autorizados por hash
+  # (python3 scripts/csp.py). Tags "HTML personalizado" e variáveis JavaScript personalizadas do GTM
+  # são bloqueadas por esta política: use Modelos personalizados ou libere a origem aqui.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-FckyLVB7bRZCVDnSdTKsG4TGIEjuLVLz9k3jjt3hRc0=' 'sha256-xf2Kardi3uMExUpl027upLOn5qQewyRgJptCv8z+nHI=' https://www.googletagmanager.com https://tagmanager.google.com; style-src 'self' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://ssl.gstatic.com https://www.gstatic.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
