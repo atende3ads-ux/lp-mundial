@@ -51,7 +51,7 @@ Rode `sh scripts/versionar.sh` antes do commit para renovar o `?v=` em todas as 
 
 ## Pendências antes de indexar e divulgar
 
-- [ ] CNPJ no rodapé e URL da política de privacidade (link hoje desativado).
+- [ ] URL da política de privacidade (link hoje desativado no rodapé).
 - [ ] Confirmar mix de marcas e produtos exibidos (ver comentários no HTML).
 - [ ] Trocar `noindex, nofollow` por `index, follow` nas três páginas e criar `sitemap.xml` + `robots.txt` apontando para ele.
 - [ ] Limpar o container `GTM-T6JJ5MPM` (remover tags da Marmoraria Studio) e confirmar Ads, Meta, Clarity e spar-track antes de liberá-los na CSP.
