@@ -28,13 +28,10 @@
     window.dataLayer.push(payload);
   }
 
-  // Links de WhatsApp no formato do Spar: data-spar-whatsapp data-phone="55DDDNUMERO" data-text="mensagem".
-  // O número fica só no HTML de cada botão; data-wa="camara|linha" e data-intent/data-pos alimentam o dataLayer.
+  // Botões de WhatsApp: o href é o link rastreável do Spar (/l/<slug>), que o spar-track.js decora com
+  // gclid/fbclid/UTMs. data-wa="camara|linha", data-intent e data-pos alimentam o dataLayer.
   function wireWhatsApp(root) {
     (root || document).querySelectorAll("a[data-wa]").forEach(function (a) {
-      var number = a.dataset.phone;
-      var msg = a.dataset.text || "";
-      a.href = "https://wa.me/" + number + (msg ? "?text=" + encodeURIComponent(msg) : "");
       a.target = "_blank";
       a.rel = "noopener";
       a.addEventListener("click", function () {

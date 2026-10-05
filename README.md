@@ -10,13 +10,13 @@ Domínio: `https://produto.mundialrefrigeracaogo.com.br/` (canonical, `og:url` e
 
 - **GTM** `GTM-T6JJ5MPM` e **GA4** `G-YPNLP0WT4K` (gtag.js direto) no topo do `<head>` das três páginas; `noscript` do GTM logo após `<body>`.
 - **Microsoft Clarity** `yqihasm6oq` no `<head>` das três páginas (origens `*.clarity.ms` e `c.bing.com` liberadas na CSP).
-- **Spar** (`spar-track.js`, pedido do cliente) antes do `</body>` das duas LPs. Todo botão de WhatsApp segue o guia do Spar: `data-spar-whatsapp data-phone="..." data-text="mensagem do botão"`; `wireWhatsApp` monta o link a partir desses atributos. No clique, o Spar registra a origem (UTMs, gclid/fbclid, cookies `_fbc`/`_fbp`) e leva ao WhatsApp na mesma aba; se o Spar falhar, abre o WhatsApp direto com a mesma mensagem.
+- **Spar** (pedido do cliente): todos os botões de WhatsApp das duas LPs e o botão flutuante (`.wa-float`) apontam para o link rastreável da própria LP — câmara fria: `https://spar-hazel.vercel.app/l/comercial-camara-fria-kl56` · linha branca: `https://spar-hazel.vercel.app/l/linha-branca-w3sz`. O `spar-track.js`, antes do `</body>`, acrescenta gclid/fbclid/UTMs e a URL da LP ao link; o destino e a mensagem do WhatsApp são definidos no Spar. Botões com link `/l/` não levam `data-spar-whatsapp` nem `data-phone`.
 - Os scripts inline do GTM e do gtag são autorizados na CSP **por hash**. Se alterar qualquer caractere deles, rode `python3 scripts/csp.py` (confira com `--check`).
 - A CSP libera GTM, modo Preview do GTM e GA4 com recursos de publicidade ([guia oficial](https://developers.google.com/tag-platform/security/guides/csp)). Qualquer outra origem é bloqueada: tags de **HTML personalizado** e **variáveis JavaScript personalizadas** do GTM não funcionam; prefira Modelos da galeria e libere no `.htaccess` apenas origens confirmadas do cliente.
 - ⚠️ A versão 4 do container `GTM-T6JJ5MPM` contém tags de outro cliente (GA4 `G-ZC0L9ZZM0F` via `stape.marmorariastudio.com.br`), além de Google Ads `AW-18474397484`, Meta Pixel `3507445589526089`, Clarity `yq1li5jqbf` e `spar-hazel.vercel.app/spar-track.js`. Todas estão bloqueadas pela CSP até que a propriedade de cada uma seja confirmada.
 - Se o GA4 `G-YPNLP0WT4K` também for configurado dentro do GTM, remova o gtag direto para não contar visitas em dobro.
 
-WhatsApp — câmara fria: **+55 62 9415-9089** · linha branca: **+55 62 9284-7772**. O número fica no HTML de cada botão, no formato do Spar (`data-phone="556294159089"`, só dígitos) e no `href` de reserva; para trocar, substitua em todos os botões da LP.
+WhatsApp: o número e a mensagem vêm do link rastreável do Spar (acima); para trocar o destino, altere o link em todos os botões das LPs ou a configuração do link no Spar. Números informados pelo cliente: câmara fria +55 62 9415-9089 · linha branca +55 62 9284-7772.
 Eventos enviados ao `dataLayer`: `selecao_categoria`, `clique_whatsapp` (frente, intenção, posição), `atalho_pecas_apoio`.
 Parâmetros de aquisição (utm_*, gclid, fbclid…) são preservados entre a página de escolha e as LPs.
 
