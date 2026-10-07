@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Atualiza os hashes dos scripts inline na Content-Security-Policy do .htaccess.
 
-Cada <script> inline das páginas (GTM, gtag) precisa do seu 'sha256-...' em script-src.
+Cada <script> inline das páginas (hoje, o estado padrão do Consent Mode) precisa do seu 'sha256-...' em script-src.
 Qualquer alteração no conteúdo desses scripts, até em espaços, muda o hash.
 
 Uso:
@@ -24,7 +24,7 @@ for page in PAGES:
         hashes.add(f"'sha256-{digest}'")
 
 conf = open(HTACCESS, encoding="utf-8").read()
-match = re.search(r"script-src ([^;\"]*)", conf)
+match = re.search(r"Content-Security-Policy \"[^\"]*?script-src ([^;\"]*)", conf)  # só a linha do cabeçalho, não os comentários
 if not match:
     sys.exit("script-src não encontrado no .htaccess")
 others = [t for t in match.group(1).split() if not t.startswith("'sha256-")]

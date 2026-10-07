@@ -2,34 +2,22 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-T6JJ5MPM');</script>
-  <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YPNLP0WT4K"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-YPNLP0WT4K');
+    gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+    try {
+      var c = JSON.parse(localStorage.getItem('mundial_consent'));
+      if (c && c.v === 1) {
+        gtag('consent', 'update', {analytics_storage: c.analytics ? 'granted' : 'denied', ad_storage: c.marketing ? 'granted' : 'denied', ad_user_data: c.marketing ? 'granted' : 'denied', ad_personalization: c.marketing ? 'granted' : 'denied'});
+      }
+    } catch (e) {}
   </script>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "yqihasm6oq");
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- GTM, GA4, Clarity e Spar só são carregados por assets/js/consent.js depois do consentimento -->
   <title>Câmara fria em Goiânia | Mundial Refrigeração</title>
   <meta name="description" content="Câmara fria dimensionada para o que seu negócio precisa conservar. Orientação de projeto, produtos e peças de apoio para refrigeração comercial em Goiânia.">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0064FF">
   <link rel="canonical" href="https://produto.mundialrefrigeracaogo.com.br/camaras-frias/">
   <meta property="og:type" content="website">
@@ -43,12 +31,19 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Câmara fria com unidade condensadora e compressores">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Câmara fria em Goiânia | Mundial Refrigeração">
+  <meta name="twitter:description" content="Câmara fria dimensionada para o que seu negócio precisa conservar. Orientação de projeto, produtos e peças de apoio para refrigeração comercial em Goiânia.">
+  <meta name="twitter:image" content="https://produto.mundialrefrigeracaogo.com.br/assets/img/og/camaras-frias.jpg">
+  <meta name="twitter:image:alt" content="Câmara fria com unidade condensadora e compressores">
   <link rel="icon" href="../favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link rel="preload" href="../assets/fonts/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/base.css?v=202610051647">
-  <link rel="stylesheet" href="../assets/css/lp.css?v=202610051647">
+  <link rel="preload" href="../assets/img/hero/camara-fria-mobile.webp" as="image" media="not all and (min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" imagesrcset="../assets/img/hero/camara-fria-desktop-1280.webp 1280w, ../assets/img/hero/camara-fria-desktop.webp 1920w" imagesizes="100vw" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="stylesheet" href="../assets/css/base.css?v=202610071618">
+  <link rel="stylesheet" href="../assets/css/lp.css?v=202610071618">
+  <link rel="stylesheet" href="../assets/css/consent.css?v=202610071618">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -65,6 +60,8 @@
         "telephone": "+55 62 3548-2525",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "R 9, 540, Quadra 18, Lote 4/5/6, Aeroviário",
+          "postalCode": "74435-180",
           "addressLocality": "Goiânia",
           "addressRegion": "GO",
           "addressCountry": "BR"
@@ -135,11 +132,6 @@
   </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T6JJ5MPM"
-height="0" width="0" hidden title="Google Tag Manager"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <svg class="sprite" width="0" height="0" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
@@ -168,9 +160,8 @@ height="0" width="0" hidden title="Google Tag Manager"></iframe></noscript>
   <!-- 1. PRIMEIRA DOBRA -->
   <section class="hero hero--full">
     <picture class="hero-bg" aria-hidden="true">
-      <source media="(max-width: 767.98px)" srcset="../assets/img/hero/camara-fria-mobile.webp" width="694" height="1378">
-      <source srcset="../assets/img/hero/camara-fria-desktop-1280.webp 1280w, ../assets/img/hero/camara-fria-desktop.webp 1920w" sizes="100vw" width="1920" height="1000">
-      <img src="../assets/img/hero/camara-fria-desktop.webp" width="1920" height="1000" alt="" fetchpriority="high">
+      <source media="(min-width: 768px)" srcset="../assets/img/hero/camara-fria-desktop-1280.webp 1280w, ../assets/img/hero/camara-fria-desktop.webp 1920w" sizes="100vw" width="1920" height="1000">
+      <img src="../assets/img/hero/camara-fria-mobile.webp" width="694" height="1378" alt="" fetchpriority="high">
     </picture>
     <div class="wrap">
       <div class="hero-copy">
@@ -354,6 +345,7 @@ height="0" width="0" hidden title="Google Tag Manager"></iframe></noscript>
       <img src="../assets/logo-mundial-branco.png" width="552" height="104" alt="Mundial Refrigeração" loading="lazy">
       <p>MUNDIAL REFRIGERACAO LTDA</p>
       <p>CNPJ: 97.538.497/0002-19</p>
+      <p>R 9, nº 540, Quadra 18, Lote 4/5/6 · Aeroviário · Goiânia – GO · CEP 74.435-180</p>
       <p><a href="mailto:mundialvendas22@gmail.com">mundialvendas22@gmail.com</a></p>
       <a class="cross" href="../linha-branca/" data-keep-params>Peças de linha branca <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-right"/></svg></a>
     </div>
@@ -369,12 +361,14 @@ height="0" width="0" hidden title="Google Tag Manager"></iframe></noscript>
       <h2 class="ftr-h">Links</h2>
       <ul>
         <li><a href="https://www.mundialrefrigeracaogo.com.br/" rel="noopener">Site da Mundial</a></li>
-        <li><a href="#" aria-disabled="true">Política de privacidade</a></li>
+        <li><a href="../politica-de-privacidade/">Política de Privacidade</a></li>
+        <li><a href="../termos-de-uso/">Termos de Uso</a></li>
+        <li><button type="button" class="link-btn" data-consent-open>Configurações de privacidade</button></li>
       </ul>
     </div>
     <div class="ftr-bottom">
       <span>© <span data-year>2026</span> Mundial Refrigeração</span>
-      <span>Desenvolvido por <a href="https://3ads.com.br/" target="_blank" rel="noopener">3ADS</a></span>
+      <span>Desenvolvido por <a href="https://3ads.com.br/" target="_blank" rel="noopener noreferrer">3ADS</a></span>
     </div>
   </div>
 </footer>
@@ -388,8 +382,8 @@ height="0" width="0" hidden title="Google Tag Manager"></iframe></noscript>
   <a class="btn btn-ghost" href="#pecas-de-apoio" data-track="atalho_pecas_apoio">Peças</a>
 </nav>
 
-<script src="../assets/js/mundial.js?v=202610051647" defer></script>
-<script src="../assets/js/lp.js?v=202610051647" defer></script>
-<script src="https://spar-hazel.vercel.app/spar-track.js"></script>
+<script src="../assets/js/mundial.js?v=202610071618" defer></script>
+<script src="../assets/js/consent.js?v=202610071618" defer></script>
+<script src="../assets/js/lp.js?v=202610071618" defer></script>
 </body>
 </html>

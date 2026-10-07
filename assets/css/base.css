@@ -52,7 +52,7 @@ p { margin: 0; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 /* Revelação única ao rolar (Mundial.reveal): só recebe .fx-wait o que estava abaixo da dobra */
 .fx-wait { opacity: 0; transform: translateY(var(--fx-y, 14px)); }
-.fx-in { transition: opacity var(--fx-t, .6s) var(--ease), transform var(--fx-t, .6s) var(--ease); }
+.fx-in { transition: opacity var(--fx-t, .6s) var(--ease) var(--fx-d, 0s), transform var(--fx-t, .6s) var(--ease) var(--fx-d, 0s); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 @media (prefers-reduced-motion: reduce) {

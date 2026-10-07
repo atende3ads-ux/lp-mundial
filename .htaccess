@@ -12,7 +12,8 @@ AddDefaultCharset UTF-8
   AddType image/webp .webp
   AddType image/svg+xml .svg
   AddType font/woff2 .woff2
-  AddCharset utf-8 .css .js .svg
+  AddType application/xml .xml
+  AddCharset utf-8 .css .js .svg .xml .txt
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -30,16 +31,22 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 <IfModule mod_headers.c>
-  # GTM-T6JJ5MPM + GA4 G-YPNLP0WT4K (com recursos de publicidade) + modo Preview do GTM, conforme
-  # https://developers.google.com/tag-platform/security/guides/csp — e Microsoft Clarity yqihasm6oq, conforme
-  # https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-csp — e Spar (spar-track.js) — scripts inline autorizados por hash
-  # (python3 scripts/csp.py). Tags "HTML personalizado" e variáveis JavaScript personalizadas do GTM
-  # são bloqueadas por esta política: use Modelos personalizados ou libere a origem aqui.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-FckyLVB7bRZCVDnSdTKsG4TGIEjuLVLz9k3jjt3hRc0=' 'sha256-Zy8Q2jjy0vS1LcUDM9KfdZVLgEM5yErRX+G/6TDdfs4=' 'sha256-xf2Kardi3uMExUpl027upLOn5qQewyRgJptCv8z+nHI=' https://www.googletagmanager.com https://tagmanager.google.com https://*.clarity.ms https://c.bing.com https://spar-hazel.vercel.app; style-src 'self' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://ssl.gstatic.com https://www.gstatic.com https://*.clarity.ms https://c.bing.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com https://spar-hazel.vercel.app; frame-src https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+  # CSP — origens por finalidade (tudo o mais é bloqueado):
+  #  script-src : 'self'; hash do script inline de consentimento (python3 scripts/csp.py); googletagmanager.com
+  #               (GTM GTM-T6JJ5MPM + gtag G-YPNLP0WT4K, carregados por consent.js só após consentimento); *.clarity.ms
+  #               (Clarity yqihasm6oq); spar-hazel.vercel.app (spar-track.js, só com Marketing); tagmanager.google.com (modo Preview do GTM).
+  #  connect-src/img-src : GA4 com recursos de publicidade e Clarity (guias oficiais do Google e da Microsoft).
+  #  style-src/font-src  : origens do Google usadas apenas pelo modo Preview do GTM.
+  #  frame-src  : googletagmanager.com (exigido pelas tags do Google Analytics com recursos de publicidade).
+  #  O botão de WhatsApp é um link para spar-hazel.vercel.app/l/... (navegação): não entra em connect-src nem form-action.
+  # Tags "HTML personalizado" e variáveis JavaScript personalizadas do GTM são bloqueadas por esta política.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-20xZukDrGRW4MtdGyp56rckguYwdq7rBCIjIpzuKlL0=' https://www.googletagmanager.com https://tagmanager.google.com https://*.clarity.ms https://spar-hazel.vercel.app; style-src 'self' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://ssl.gstatic.com https://www.gstatic.com https://*.clarity.ms https://c.bing.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com https://*.google.com.br https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; frame-src https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
   Header always set X-Frame-Options "SAMEORIGIN"
+  # HSTS só em respostas HTTPS, sem includeSubDomains/preload (subdomínios do domínio não foram verificados)
+  Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on' || %{HTTP:X-Forwarded-Proto} == 'https'"
 
   # HTML sempre revalidado; CSS/JS versionados por ?v= (scripts/versionar.sh); mídia e fontes em cache longo
   <FilesMatch "\.html$">
@@ -47,6 +54,9 @@ AddDefaultCharset UTF-8
   </FilesMatch>
   <FilesMatch "\.(css|js)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(xml|txt)$">
+    Header set Cache-Control "public, max-age=3600"
   </FilesMatch>
   <FilesMatch "\.woff2$">
     Header set Cache-Control "public, max-age=31536000, immutable"
@@ -57,5 +67,5 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/plain text/javascript application/javascript application/json image/svg+xml image/x-icon image/vnd.microsoft.icon
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/javascript application/javascript application/json application/xml text/xml image/svg+xml image/x-icon image/vnd.microsoft.icon
 </IfModule>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://produto.mundialrefrigeracaogo.com.br/sitemap.xml

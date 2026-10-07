@@ -238,7 +238,9 @@ body.escolha {
 .brands.is-paused .i-pause { display: none; }
 
 .foot { text-align: center; font-size: .84rem; color: var(--t3); padding: 10px 24px 22px; }
-.foot a { color: inherit; }
+.foot p + p { margin-top: 4px; }
+.foot a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.foot a, .foot .link-btn { display: inline-block; padding: 3px 2px; }
 
 /* ---------- A partir de 768px: grade 50/50 ---------- */
 @media (min-width: 768px) {
