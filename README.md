@@ -25,7 +25,7 @@ Consent Mode v2 em **modo básico** (`assets/js/consent.js` + `assets/css/consen
 
 ### Páginas legais
 
-`/politica-de-privacidade/` e `/termos-de-uso/` usam somente fatos confirmados: razão social, CNPJ e endereço do Comprovante de Inscrição (CNPJ 97.538.497/0002-19, **filial**), contatos informados (`mundialvendas22@gmail.com`, WhatsApp (62) 99284-7772), retenção de leads de 12 meses e o inventário técnico de cookies. **Não há texto jurídico aprovado**: bases legais, direitos do titular, transferência internacional, segurança e limitações de responsabilidade foram deliberadamente omitidos. As duas páginas estão `noindex, follow` e fora do sitemap até a aprovação do conteúdo.
+`/politica-de-privacidade/` e `/termos-de-uso/` usam somente fatos confirmados: razão social, CNPJ e endereço do Comprovante de Inscrição da **matriz** (CNPJ 97.538.497/0001-38, Av Rio Verde, 1246, Quadra 08, Lote 01E, Setor dos Afonsos, Goiânia – GO, CEP 74.843-710, emitido em 07/10/2026), contatos informados (`mundialvendas22@gmail.com`, WhatsApp (62) 99284-7772), retenção de leads de 12 meses e o inventário técnico de cookies. **Não há texto jurídico aprovado**: bases legais, direitos do titular, transferência internacional, segurança e limitações de responsabilidade foram deliberadamente omitidos. As duas páginas estão `noindex, follow` e fora do sitemap até a aprovação do conteúdo.
 
 ## Tracking
 
@@ -81,6 +81,5 @@ As três páginas públicas estão `index, follow` (decisão de 07/10/2026) com 
 - [ ] Aprovação jurídica da Política de Privacidade e dos Termos de Uso (e depois decidir se saem do `noindex`).
 - [ ] Limpar o container `GTM-T6JJ5MPM` (tags da Marmoraria Studio), confirmar Meta e a propriedade do Clarity e conferir o rótulo de conversão do Ads; configurar consentimento adicional nas tags de terceiros.
 - [ ] Confirmar no Spar o número de WhatsApp de cada link (linha branca: ficha informa +55 62 99284-7772).
-- [ ] Confirmar que a filial (CNPJ …/0002-19) é a entidade responsável pelas páginas e o endereço a exibir.
 - [ ] Confirmar mix de marcas e produtos exibidos (ver comentários no HTML).
 - [ ] Validar Consent Mode no Tag Assistant e a CSP no servidor real após o deploy.
