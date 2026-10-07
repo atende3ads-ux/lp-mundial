@@ -32,7 +32,7 @@ Consent Mode v2 em **modo básico** (`assets/js/consent.js` + `assets/css/consen
 - **GTM** `GTM-T6JJ5MPM` e **GA4** `G-YPNLP0WT4K` (gtag.js direto) e **Microsoft Clarity** `yqihasm6oq`: carregados por `consent.js` (ver acima), não mais por scripts inline.
 - **Spar** (pedido do cliente): todos os botões de WhatsApp das duas LPs e o botão flutuante (`.wa-float`) são **links** (navegação em nova aba, não `fetch`) para o link rastreável da própria LP — câmara fria: `https://spar-hazel.vercel.app/l/comercial-camara-fria-kl56` · linha branca: `https://spar-hazel.vercel.app/l/linha-branca-w3sz`. O destino e a mensagem do WhatsApp são definidos no Spar. Botões com link `/l/` não levam `data-spar-whatsapp` nem `data-phone`.
 - A CSP libera GTM, modo Preview do GTM, GA4 com recursos de publicidade ([guia oficial](https://developers.google.com/tag-platform/security/guides/csp)) e Clarity ([guia](https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-csp)). Qualquer outra origem é bloqueada: tags de **HTML personalizado** e **variáveis JavaScript personalizadas** do GTM não funcionam; prefira Modelos da galeria e libere no `.htaccess` apenas origens confirmadas do cliente.
-- ⚠️ O container publicado `GTM-T6JJ5MPM` contém tags de **outro cliente** (GA4 `G-ZC0L9ZZM0F` via `stape.marmorariastudio.com.br`, Google Ads `AW-18474397484`, Meta Pixel `3507445589526089`, Clarity `yq1li5jqbf`, seletores de formulário e leitura de cookies de e-mail/telefone/nome, `spar-track.js`). A CSP as bloqueia, mas **o container precisa ser limpo antes de divulgar**. Nenhuma dessas IDs foi instalada no HTML. Meta Pixel e Google Ads não estão confirmados para a Mundial; ao configurá-los no GTM, use consentimento adicional (Meta e Clarity só com `marketing`/`analytics`) e libere as origens na CSP.
+- ⚠️ O container publicado `GTM-T6JJ5MPM` contém tags de **outro cliente** (GA4 `G-ZC0L9ZZM0F` via `stape.marmorariastudio.com.br`, Google Ads `AW-18474397484`, Meta Pixel `3507445589526089`, Clarity `yq1li5jqbf`, seletores de formulário e leitura de cookies de e-mail/telefone/nome, `spar-track.js`). A CSP as bloqueia, mas **o container precisa ser limpo antes de divulgar**. Nenhuma dessas IDs foi instalada no HTML. O Google Ads `AW-18474397484` foi **confirmado pelo gestor como da Mundial (07/10/2026)** e roda pelo GTM (não está no HTML); a CSP libera as origens dele. Meta Pixel segue **não confirmado**; ao configurá-lo no GTM, use consentimento adicional (Meta só com `marketing`, Clarity só com `analytics`) e libere as origens na CSP.
 - O GA4 `G-YPNLP0WT4K` não está no GTM (não há contagem em dobro). Se for movido para o GTM, remova `loadGa` de `consent.js`.
 
 WhatsApp: o número e a mensagem vêm do link rastreável do Spar; para trocar o destino, altere o link em todos os botões das LPs ou a configuração do link no Spar. Números informados pelo cliente: câmara fria +55 62 9415-9089 · linha branca +55 62 99284-7772 (a ficha de 07/10/2026 traz o 9º dígito; o README anterior citava 9284-7772 — confirme no Spar).
@@ -59,8 +59,8 @@ Fotos de produtos (`assets/img/produtos/`) e ambiente de câmara fria vêm do me
 
 - HTTPS forçado apenas no domínio de produção.
 - CSP estrita (fonte única, sem `<meta>`), sem `unsafe-inline`/`unsafe-eval`; o único script inline é autorizado por hash. Por diretiva:
-  - `script-src`: `'self'`, hash do consentimento, `googletagmanager.com`, `tagmanager.google.com` (Preview), `*.clarity.ms`, `spar-hazel.vercel.app`;
-  - `connect-src`/`img-src`: GA4 com publicidade (`*.google-analytics.com`, `*.google.com`, `*.google.com.br`, `*.g.doubleclick.net`, `pagead2.googlesyndication.com`) e Clarity (`*.clarity.ms`, `c.bing.com`);
+  - `script-src`: `'self'`, hash do consentimento, `googletagmanager.com`, `tagmanager.google.com` (Preview), Google Ads (`www.googleadservices.com`, `googleads.g.doubleclick.net`, `www.google.com`), `*.clarity.ms`, `spar-hazel.vercel.app`;
+  - `connect-src`/`img-src`: GA4 com publicidade (`*.google-analytics.com`, `*.google.com`, `*.google.com.br`, `*.g.doubleclick.net`, `pagead2.googlesyndication.com`), Google Ads (`www.googleadservices.com`, `ad.doubleclick.net`) e Clarity (`*.clarity.ms`, `c.bing.com`);
   - `style-src`/`font-src`: origens do Google usadas só pelo Preview do GTM; `frame-src`: `googletagmanager.com`;
   - `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, `frame-ancestors 'self'`.
   O Spar é **link**, não entra em `connect-src`/`form-action`. **Ao adicionar Google Ads, pixel ou outro recurso externo, inclua as origens exatas antes de publicar.**
@@ -79,7 +79,7 @@ As três páginas públicas estão `index, follow` (decisão de 07/10/2026) com 
 ## Pendências
 
 - [ ] Aprovação jurídica da Política de Privacidade e dos Termos de Uso (e depois decidir se saem do `noindex`).
-- [ ] Limpar o container `GTM-T6JJ5MPM` (tags da Marmoraria Studio) e confirmar Ads, Meta e a propriedade do Clarity; configurar consentimento adicional nas tags de terceiros.
+- [ ] Limpar o container `GTM-T6JJ5MPM` (tags da Marmoraria Studio), confirmar Meta e a propriedade do Clarity e conferir o rótulo de conversão do Ads; configurar consentimento adicional nas tags de terceiros.
 - [ ] Confirmar no Spar o número de WhatsApp de cada link (linha branca: ficha informa +55 62 99284-7772).
 - [ ] Confirmar que a filial (CNPJ …/0002-19) é a entidade responsável pelas páginas e o endereço a exibir.
 - [ ] Confirmar mix de marcas e produtos exibidos (ver comentários no HTML).
